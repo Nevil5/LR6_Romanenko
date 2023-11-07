@@ -21,7 +21,6 @@ const commands: array [1..11] of string = (
     'drawline', 'drawellipse', 'drawtext', 'clear', 'drawimage','fillroundedrectangle','drawpixel','drawsymbol','setorientation','getwidth','getheight'
 );
 
-// Перечисление для типов команд
 type TCommand=(DRAW_LINE, DRAW_ELLIPSE, DRAW_TEXT, CLEAR, DRAW_IMAGE, FILL_ROUNDED_RECTANGLE, DRAW_PIXEL, DRAW_SYMBOL, SET_ORIENTATION, GET_WIDTH, GET_HEIGHT);
 
 type
@@ -38,13 +37,11 @@ type
       const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
   private
-    { Private declarations }
     bmp:TBitmap;
     packet:TPacket;
     send_data:TIdBytes;
     sendcommand:TCommand;
   public
-    { Public declarations }
     function DrawPixelEncode(const sendcommand, px1,py1,parcolor:string):string;
     function SetOrientationEncode(const sendcommand, deg:string):string;
     function GetWidthEncode(const sendcommand:string):string;
@@ -160,7 +157,7 @@ try
     Result:=command.ToString+' '+parcolor;
   except on EConvertError do
   begin
-    ShowMessage('Цвет неверный!!!');
+    ShowMessage('Колiр невiрний!!!');
     Result:='3 '+'000000';
   end;
   end;
@@ -176,7 +173,7 @@ begin
     Result:=command.ToString+' '+symbol+' '+xx.ToString+' '+yy.ToString+' '+parcolor;
   except on EConvertError do
   begin
-    ShowMessage('Координаты буквы неверны!!!');
+    ShowMessage('Координати букви невiрнi!!!');
     Result:='7 0 0 0 0';
   end;
 end;
@@ -195,7 +192,7 @@ begin
     Result:=command.ToString+' '+x1.ToString+' '+y1.ToString+' '+x2.ToString+' '+y2.ToString+' '+parcolor;
   except on EConvertError do
   begin
-    ShowMessage('Координаты эллипса неверны!!!');
+    ShowMessage('Координати елiпса невiрнi!!!');
     Result:='1 0 0 0 0 '+parcolor;
   end;
   end;
@@ -212,7 +209,7 @@ begin
     Result:=command.ToString+' '+w.ToString+' '+h.ToString;
   except on EConvertError do
   begin
-    ShowMessage('размеры неверны!!!');
+    ShowMessage('розмiри невiрнi!!!');
     Result:='4 0 0';
   end;
   end;
@@ -232,7 +229,7 @@ begin
     +y2.ToString+' '+parcolor;
   except on EConvertError do
   begin
-    ShowMessage('Координаты линии неверны!!!');
+    ShowMessage('Координати лiнii невiрнi!!!');
     Result:='0 0 0 0 0 '+parcolor;
   end;
   end;
@@ -249,7 +246,7 @@ begin
     Result:=command.ToString+' '+x1.ToString+' '+y1.ToString+' '+parcolor;
   except on EConvertError do
   begin
-    ShowMessage('Координаты линии неверны!!!');
+    ShowMessage('Координати лiнii невiрнi!!!');
     Result:='6 0 0 '+parcolor;
   end;
   end;
@@ -269,7 +266,7 @@ begin
     +y2.ToString+' '+text+' '+parcolor;
   except on EConvertError do
   begin
-    ShowMessage('Координаты линии неверны!!!');
+    ShowMessage('Координати лiнii невiрнi!!!');
     Result:='2 0 0 0 0 '+text+' '+parcolor;
   end;
   end;
@@ -290,7 +287,7 @@ begin
     x2.ToString+' '+y2.ToString+' '+rad.ToString+' '+parcolor;
   except on EConvertError do
   begin
-    ShowMessage('Ошибка!!!');
+    ShowMessage('Помилка!!!');
     Result:='5 0 0 0 0 0 0';
   end;
   end;
@@ -308,7 +305,7 @@ begin
     Result:=command.ToString;
   except on EConvertError do
   begin
-    ShowMessage('Ошибка!!!');
+    ShowMessage('Помилка!!!');
     Result:='10 0';
   end;
   end;
@@ -321,7 +318,7 @@ begin
     Result:=command.ToString;
   except on EConvertError do
   begin
-    ShowMessage('Ошибка!!!');
+    ShowMessage('Помилка!!!');
     Result:='9 0';
   end;
   end;
@@ -355,7 +352,7 @@ begin
     Result:=command.ToString+' '+degrees.ToString;
   except on EConvertError do
   begin
-    ShowMessage('Ошибка!!!');
+    ShowMessage('Помилка!!!');
     Result:='8 0';
   end;
   end;

@@ -59,8 +59,6 @@ end;
 implementation
 
 
-{ TMyCommands }
-
 class procedure TMyCommands.ClearCanvas(const Form:TForm; const Canvas:TCanvas; const color: Cardinal);
 begin
   Canvas.Clear(color);
@@ -75,7 +73,7 @@ begin
   Canvas.Stroke.Thickness:=2;
 
   case mysymbol of
-  0:  // А
+  0:
   begin
     xcenter:=ppoint.X;
     ycenter:=ppoint.Y;
@@ -95,7 +93,7 @@ begin
     p2:=TPointF.Create(xcenter+10,ycenter+20);
     Canvas.DrawLine(p1,p2,1.0);
   end;
-  1:  // В
+  1:
   begin
 
     xcenter:=ppoint.X;
@@ -127,7 +125,7 @@ begin
     Canvas.DrawLine(p1,p2,1.0);
 
   end;
-  2:  // С
+  2:
   begin
 
     xcenter:=ppoint.X;
@@ -144,7 +142,7 @@ begin
     Canvas.DrawLine(p1,p2,1.0);
 
   end;
-  3:  // D
+  3:
   begin
 
     xcenter:=ppoint.X;
@@ -166,7 +164,7 @@ begin
     Canvas.DrawLine(p1,p2,1.0);
 
   end;
-  4: //E
+  4:
   begin
   xcenter:=ppoint.X;
   ycenter:=ppoint.Y;
@@ -192,7 +190,7 @@ begin
     Canvas.DrawLine(p1,p2,1.0);
 
   end;
-  5: //F
+  5:
   begin
   xcenter:=ppoint.X;
   ycenter:=ppoint.Y;
@@ -213,7 +211,7 @@ begin
     Canvas.DrawLine(p1,p2,1.0);
 
   end;
-  6: //G
+  6:
   begin
    xcenter:=ppoint.X;
    ycenter:=ppoint.Y;
@@ -244,7 +242,7 @@ begin
     Canvas.DrawLine(p1,p2,1.0);
 
   end;
-  7: //H
+  7:
   begin
     xcenter:=ppoint.X;
     ycenter:=ppoint.Y;
@@ -407,7 +405,7 @@ begin
     Result:=1;
   except on EConvertError do
   begin
-    ShowMessage('Неверно введены координаты линии!!!');
+    ShowMessage('Невiрно веденi координати лiнii!!!');
     Result:=0;
   end;
   end;
@@ -421,7 +419,7 @@ begin
     Result:=1;
   except on EConvertError do
   begin
-    ShowMessage('Неверный угол!!!');
+    ShowMessage('Невiрний кут!!!');
     Result:=0;
   end;
   end;
@@ -437,7 +435,7 @@ begin
     Result:=1;
   except on EConvertError do
   begin
-    ShowMessage('Неверно введены координаты пиксела!!!');
+    ShowMessage('Невiрно веденi координати пiкселя!!!');
     Result:=0;
   end;
   end;

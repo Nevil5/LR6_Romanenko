@@ -17,7 +17,6 @@ const symbols: array [1..8] of string = (
 
 
 
-// Запись для приема данных от клиента
 type TPacket = packed record
   msLen:Byte;
   colorarray:array [1..40,1..40] of cardinal;
@@ -26,7 +25,6 @@ type TPacket = packed record
   msg:string[255];
 end;
 
-// Параметры картинки
 
 type TPicData = class
   pic:TBitmap;
@@ -35,7 +33,6 @@ type TPicData = class
   constructor Create(var x,y:Double;var pic:TBitmap); overload;
 end;
 
-// Параметры надписи
 
 type TTextData = class
   text:string;
@@ -85,7 +82,6 @@ type TFillRoundedRectangleData = class
 end;
 
 
-// Параметры линии
 
 type TLineData = class
   p1:TPointF;
@@ -94,7 +90,7 @@ type TLineData = class
   constructor Create(var p1,p2:TPointF; color:string); overload;
 end;
 
-// Перечисление для типов команд
+
 type TCommand=(DRAW_LINE, DRAW_ELLIPSE, DRAW_TEXT, CLEAR, DRAW_IMAGE, FILL_ROUNDED_RECTANGLE, DRAW_PIXEL, DRAW_SYMBOL, SET_ORIENTATION, GET_WIDTH, GET_HEIGHT);
 
 type
@@ -104,13 +100,12 @@ type
     Label2: TLabel;
     PaintBox1: TPaintBox;
     IdUDPClient1: TIdUDPClient;
-    Edit1: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure IdUDPServer1UDPRead(AThread: TIdUDPListenerThread;
       const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure PaintBox1Paint(Sender: TObject; Canvas: TCanvas);
   private
-    { Private declarations }
+
     bmp:TBitmap;
     packet:TPacket;
     command:TCommand;
@@ -123,7 +118,7 @@ type
     pixellist:TList<TPixelData>;
     symbollist:TList<TSymbolData>;
   public
-    { Public declarations }
+
   end;
 
 var
@@ -162,7 +157,6 @@ begin
           s:=packet.msg;
           spl:=s.Split([' ']);
 
-          // Парсим полученную команду от клиента
 
           command:=TCommand(Integer.Parse(spl[0]));
 
@@ -272,7 +266,6 @@ begin
           begin
               IdUDPClient1.Active:=true;
               IdUDPClient1.Port:=5001;
-              IdUDPClient1.Host:=Edit1.Text;
               IdUDPClient1.Connect;
 
               if IdUDPClient1.Connected then
@@ -286,8 +279,6 @@ begin
           begin
               IdUDPClient1.Active:=true;
               IdUDPClient1.Port:=5001;
-              IdUDPClient1.Host:=Edit1.Text;
-              IdUDPClient1.Connect;
 
               if IdUDPClient1.Connected then
               begin
@@ -344,7 +335,6 @@ end;
 
 
 
-{ TPicData }
 
 constructor TPicData.Create(var x, y: Double; var pic: TBitmap);
 begin
@@ -353,7 +343,7 @@ begin
   Self.pic:=pic;
 end;
 
-{ TTextData }
+
 
 constructor TTextData.Create(var text:string; var x1,y1,x2,y2:Double; color:string);
 begin
@@ -365,7 +355,7 @@ begin
   Self.color:=color;
 end;
 
-{ TLineData }
+
 
 constructor TLineData.Create(var p1,p2:TPointF; color:string);
 begin
@@ -374,7 +364,7 @@ begin
   Self.color:=color;
 end;
 
-{ TEllipseData }
+
 
 constructor TEllipseData.Create(var x1, y1, x2, y2: Double; color: string);
 begin
@@ -385,7 +375,7 @@ begin
   Self.color:=color;
 end;
 
-{ TFillRoundedRectangleData }
+
 
 constructor TFillRoundedRectangleData.Create(var x1, y1, x2, y2,
   radius: Integer; color: string);
@@ -398,7 +388,6 @@ begin
   Self.color:=color;
 end;
 
-{ TPixelData }
 
 constructor TPixelData.Create(var x1, y1: Double; color: string);
 begin
@@ -407,7 +396,6 @@ begin
   Self.color:=color;
 end;
 
-{ TAData }
 
 constructor TSymbolData.Create(var x, y: Double; color: string; symbpos : integer);
 begin
